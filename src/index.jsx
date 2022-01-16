@@ -13,6 +13,14 @@ const Chip8 = (props) => {
         chip8 = new Chip8Component(ctx, scale, []);
     }, [])
 
+    const keydown = (e) => {
+        chip8.key_down(e.keyCode);
+    }
+
+    const keyup = (e) => {
+        chip8.key_up(e.keyCode);
+    }
+
     const start = () => {
         const tick = () => {
             chip8.tick();
@@ -34,14 +42,16 @@ const Chip8 = (props) => {
         }
     }
 
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-            <canvas id="canvas" width={64 * scale} height={32 * scale} ref={ref} />
-            <input type="file" onChange={onFileInput} accept={".bin, .ch8"} />
-        </div>
-    )
+    // return (
+    //     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+    //         <canvas id="canvas" width={64 * scale} height={32 * scale} ref={ref} tabIndex={0} onKeyDown={keydown} onKeyUp={keyup} />
+    //         <input type="file" onChange={onFileInput} accept={".bin, .ch8"} />
+    //     </div>
+    // )
+
+    return <canvas id="canvas" width={64 * scale} height={32 * scale} ref={ref} tabIndex={0} onKeyDown={keydown} onKeyUp={keyup} />
 }
 
-ReactDOM.render(<Chip8 />, document.getElementById("root"));
+// ReactDOM.render(<Chip8 />, document.getElementById("root"));
 
 exports.Chip8 = Chip8;

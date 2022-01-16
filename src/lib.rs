@@ -1,6 +1,5 @@
 use std::f64;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::JsCast;
 use web_sys::CanvasRenderingContext2d;
 
 const FONT_SET: [u8; 80] = [
@@ -88,6 +87,30 @@ impl Chip8Component {
                 self.canvas
                     .fill_rect(x as f64, y as f64, self.scale as f64, self.scale as f64);
             }
+        }
+    }
+
+    pub fn key_down(&mut self, key: usize) {
+        let key_pressed = KEY_MAP
+            .iter()
+            .enumerate()
+            .find(|tuple| *tuple.1 == key as u8)
+            .map(|tuple| tuple.0);
+
+        if let Some(key) = key_pressed {
+            self.interpreter.set_key(key);
+        }
+    }
+
+    pub fn key_up(&mut self, key: usize) {
+        let key_pressed = KEY_MAP
+            .iter()
+            .enumerate()
+            .find(|tuple| *tuple.1 == key as u8)
+            .map(|tuple| tuple.0);
+
+        if let Some(key) = key_pressed {
+            self.interpreter.unset_key(key);
         }
     }
 }
