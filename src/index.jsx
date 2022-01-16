@@ -49,9 +49,9 @@ const Chip8 = (props) => {
     //     </div>
     // )
 
-    return <canvas id="canvas" width={64 * scale} height={32 * scale} ref={ref} tabIndex={0} onKeyDown={keydown} onKeyUp={keyup} />
+    return (<canvas id="canvas" style={props.style} width={64 * scale} height={32 * scale} ref={ref} tabIndex={0} onKeyDown={keydown} onKeyUp={keyup} />)
 }
 
 // ReactDOM.render(<Chip8 />, document.getElementById("root"));
 
-exports.Chip8 = Chip8;
+module.exports.Chip8 = Chip8;
