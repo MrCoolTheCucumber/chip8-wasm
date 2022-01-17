@@ -33,18 +33,15 @@ extern "C" {
     fn log(s: &str);
 }
 
-#[wasm_bindgen(start)]
-pub fn start() {}
-
 #[wasm_bindgen]
-pub struct Chip8Component {
+pub struct Chip8 {
     canvas: CanvasRenderingContext2d,
     scale: usize,
     interpreter: Chip8Interpreter,
 }
 
 #[wasm_bindgen]
-impl Chip8Component {
+impl Chip8 {
     #[wasm_bindgen(constructor)]
     pub fn new(context: CanvasRenderingContext2d, scale: usize, rom: &[u8]) -> Self {
         let mut interpreter = Chip8Interpreter::default();
